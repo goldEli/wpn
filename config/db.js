@@ -2,13 +2,13 @@ var mysql = require("mysql");
 var pool = mysql.createPool({
     host:"localhost",
     user:"root",
-    password:"",
+    password:"123456",
     database:"wpn"
 });
 
-function query(sql,callback){
+function query(sql,callback,addSqlParams){
     pool.getConnection(function(err,connection){
-        connection.query(sql, function (err,rows) {
+        connection.query(sql, addSqlParams, function (err,rows) {
             callback(err,rows);
             connection.release();
         });
