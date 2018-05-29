@@ -2,8 +2,7 @@
 
 ## log
 
-* pm2 list
-* pm2 stop all
+* CREATE SCHEMA `wpn` DEFAULT CHARACTER SET utf8mb4 ;
 
 ## reference
 

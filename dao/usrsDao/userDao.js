@@ -3,11 +3,11 @@ var common = require('../common');
 
 var sql={
 	//增
-	insert:'INSERT INTO wpn_user(id,name) VALUES(?,?)',
+	insert:'INSERT INTO users(id,name) VALUES(?,?)',
 	//删
-	deleteById: 'DELETE FROM wpn_user WHERE id=',
+	deleteById: 'DELETE FROM users WHERE id=',
     //查
-    findAll: 'SELECT * FROM wpn_user',
+    findAll: 'SELECT * FROM users',
 }
 
 var md = {}
