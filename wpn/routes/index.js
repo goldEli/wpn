@@ -4,7 +4,7 @@ var users = require('./users');
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  res.sendfile('../public/wpn-ui/build/index.html');
+  res.render('index', { title: 'Express' });
 });
 
 // mount user routes at /users
