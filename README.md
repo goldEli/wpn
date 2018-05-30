@@ -2,9 +2,13 @@
 
 代理，订单管理
 
-## log
+## 先创建数据库表
 
-* CREATE SCHEMA `wpn` DEFAULT CHARACTER SET utf8mb4 ;
+```
+CREATE SCHEMA `wpn` DEFAULT CHARACTER SET utf8mb4 ;
+```
+
+## log
 
 ## reference
 
