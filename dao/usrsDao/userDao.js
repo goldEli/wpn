@@ -34,5 +34,7 @@ md.deleteById = function(id, callback) {
 	});
 }
 
+md.findNameByPwd = function(){}
+
 
 module.exports=md;

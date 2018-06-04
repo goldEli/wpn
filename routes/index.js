@@ -3,8 +3,9 @@ var router = express.Router();
 var users = require('./users');
 
 /* GET home page. */
-router.get('/', function(req, res, next) {
-  res.render('../public/wpn-ui/build/index.html');
+router.post('/', function(req, res, next) {
+  // res.render('index',{title:123})
+  res.sendfile('../public');
 });
 
 // mount user routes at /users
