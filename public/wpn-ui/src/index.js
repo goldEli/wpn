@@ -4,8 +4,7 @@ import './index.css';
 import registerServiceWorker from './registerServiceWorker';
 //import styles
 import "weui";
-import Login from './component/Login/Login';
-import Home from './component/Home/Home';
+import Layout from "./component/Common/Layout/Layout";
 
-ReactDOM.render(<Home/>, document.getElementById('root'));
+ReactDOM.render(<Layout/>, document.getElementById('root'));
 registerServiceWorker();
