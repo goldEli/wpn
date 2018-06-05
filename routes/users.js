@@ -6,12 +6,7 @@ var usersServers = require('../servers/usersServers/usersServers');
 
 router.post('/', function(req, res, next) {
   usersServers.queryallUsers(function(data){
-    var Cookies = {};
-    req.headers.cookie && req.headers.cookie.split(';').forEach(function( Cookie ) {
-        var parts = Cookie.split('=');
-        Cookies[ parts[ 0 ].trim() ] = ( parts[ 1 ] || '' ).trim();
-    });
-    res.send(Cookies);
+    
   })
 });
 
@@ -21,7 +16,7 @@ router.post('/add', function(req, res, next){
   var uuid = UUID.v4().replace(/-/g,'');
   var addParams = [uuid, name]
   usersServers.addUser(addParams, function(data){
-    res.send(data);
+    res.json(data);
   })
 })
 
@@ -29,7 +24,7 @@ router.post('/add', function(req, res, next){
 router.post('/del', function(req, res, next){
   var id = req.body.id;
   usersServers.deleteById(id, function(data){
-    res.send(data)
+    res.json(data)
   })
 })
 
@@ -38,19 +33,26 @@ router.post('/login', function(req, res, next){
   var {pwd, mobile} = req.body;
   usersServers.findUserInfoByPwdAndMobile({pwd,mobile}, function(data){
     if (data.data.length>0) {
-      console.log(data)
       req.session.user = data.data[0]
-      res.send({status:2,data:{url:'/home'}})
+      res.json({status:2,data:{url:'/home'}})
     }else{
       console.log('login faild')
     }
   })
 })
+
 // log out
 router.post('/logout', function(req, res, next){
   req.session.user = null;
-  res.send({status:2,data:{url:'/login'}})
+  res.json({status:2,data:{url:'/login'}})
 })
 
+// user info
+router.post('/userInfo', function(req, res, next){
+  var {id} = req.session.user;
+  usersServers.findUserInfoById({id}, function(data){
+    res.json(data)
+  })
+})
 
 module.exports = router;

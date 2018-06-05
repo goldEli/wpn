@@ -22,4 +22,13 @@ md.findUserInfoByPwdAndMobile = function(option, cb) {
     usersDao.findByPwdAndMobile(option, cb)
 }
 
+// find user info
+md.findUserInfoById = function(option, cb) {
+    usersDao.findById(option, (data)=>{
+        var o = Object.assign({},data.data[0])
+        data.data = o
+        cb(data)
+    })
+}
+
 module.exports = md;

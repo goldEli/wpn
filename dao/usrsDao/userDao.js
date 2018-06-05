@@ -10,6 +10,9 @@ var sql={
     findAll: 'SELECT * FROM users',
     findByPwdAndMobile: (pwd, mobile) => {
         return `select * from users where pwd=${pwd} and mobile=${mobile};`
+    },
+    findById: (id) => {
+        return `select * from users where id='${id}';`
     }
 }
 
@@ -41,6 +44,14 @@ md.findByPwdAndMobile = function(option, callback) {
     var s = sql.findByPwdAndMobile(pwd, mobile);
     db(s, function(err, data){
         common.handleDataWithStatus({err,data,callback,s}) 
+    })
+}
+
+md.findById = function(option, callback) {
+    const {id} = option;
+    var s = sql.findById(id);
+    db(s, function(err, data){
+        common.handleDataWithStatus({err,data,callback,s})
     })
 }
 

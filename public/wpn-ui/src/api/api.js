@@ -9,6 +9,7 @@ const urls = {
   delUser: "/users/del",
   login: "/users/login",
   logout: "/users/logout",
+  userInfo: "/users/userInfo"
 };
 
 const handleFetch = function(options) {
@@ -35,11 +36,14 @@ const handleFetch = function(options) {
       }
     })
     .then(res => {
-      res = JSON.parse(res);
+      if (typeof res === 'string') {
+        res = JSON.parse(res);
+      } 
+      
       switch (res.status) {
         case 0:
           if (success) {
-            success(res);
+            success(res.data);
           }
           break;
         case 1:

@@ -11,7 +11,7 @@ import {
   Label,
   Toptips
 } from "react-weui";
-import api from '../../api/basic'
+import api from '../../api/api'
 
 export default class Login extends React.Component {
   constructor(props){
@@ -20,8 +20,7 @@ export default class Login extends React.Component {
       showToptips: false,
     }
   }
-  _handleInputChange = (e) => {
-    
+  _handleInputChange = (e) => { 
     this.setState({[e.target.name]:  e.target.value});
   }
   _handleTips = () => {
@@ -43,7 +42,9 @@ export default class Login extends React.Component {
       param:{pwd, mobile}
     })
   }
- 
+  _handleRegister = () => {
+    
+  }
   render() {
     return (
       <div className="wpn-login" style={{paddingTop: '10%'}}>
@@ -66,12 +67,8 @@ export default class Login extends React.Component {
           </FormCell>
         </Form>
         <ButtonArea>
-          <Button
-            //button to display toptips
-            onClick={this._handleSubmit}
-          >
-            OK
-          </Button>
+          <Button onClick={this._handleSubmit}>OK</Button>
+          <Button onClick={this._handleRegister}>Register</Button>
         </ButtonArea>
         <Toptips type="warn" show={this.state.showToptips}>
           Oops, username or password invalid!
