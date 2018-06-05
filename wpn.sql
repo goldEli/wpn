@@ -8,6 +8,7 @@ DROP TABLE IF EXISTS `users`;
 CREATE TABLE `users` (
   `id` varchar(100) NOT NULL DEFAULT '',
   `name` varchar(255) NOT NULL DEFAULT '',
+  `mobile` varchar(255) NOT NULL DEFAULT '',
   `pwd` varchar(255) NOT NULL DEFAULT '',
   `description` varchar(255) NOT NULL DEFAULT '',
   PRIMARY KEY (`id`)
@@ -20,8 +21,8 @@ CREATE TABLE `users` (
 
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
-INSERT INTO `users` VALUES ('c0a42bfcd79545ec98a8fc72ebbbb8d6', 'kkk', '123', '');
-INSERT INTO `users` VALUES ('3c410edc281445758ffdd9cb681170f6', 'bbb', '123', '');
-INSERT INTO `users` VALUES ('0b9f9ce3c56d475ea3e86de94152993a', 'lll', '123', '');
+INSERT INTO `users` VALUES ('c0a42bfcd79545ec98a8fc72ebbbb8d6', 'kkk', '135', '123', '');
+INSERT INTO `users` VALUES ('3c410edc281445758ffdd9cb681170f6', 'bbb', '138', '123', '');
+INSERT INTO `users` VALUES ('0b9f9ce3c56d475ea3e86de94152993a', 'lll', '130', '123', '');
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;

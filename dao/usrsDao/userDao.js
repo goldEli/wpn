@@ -8,33 +8,41 @@ var sql={
 	deleteById: 'DELETE FROM users WHERE id=',
     //查
     findAll: 'SELECT * FROM users',
+    findByPwdAndMobile: (pwd, mobile) => {
+        return `select * from users where pwd=${pwd} and mobile=${mobile};`
+    }
 }
 
 var md = {}
 
 md.findAll = function(callback) {
-    db(sql.findAll,function (err, data) {
-        var type = 'FIND_ALL'
-        common.handleDataWithStatus({err,data,callback,type})
+    var s = sql.findAll;
+    db(s,function (err, data) {
+        common.handleDataWithStatus({err,data,callback,s})
     });
 }
 
 md.insert = function(addParam, callback) {
-    db(sql.insert,function (err, data) {
-        var type = 'INSERT'
-        common.handleDataWithStatus({err,data,callback,type})   
+    var s = sql.insert;
+    db(s, function (err, data) {
+        common.handleDataWithStatus({err,data,callback,s})   
     },addParam);
 }
 
 md.deleteById = function(id, callback) {
-    var newSql = sql.deleteById + `'` + id + `'`;
-    db(newSql,function (err, data) {
-		var type = 'DELETE'
-        common.handleDataWithStatus({err,data,callback,type}) 
+    var s = sql.deleteById + `'` + id + `'`;
+    db(s,function (err, data) {
+        common.handleDataWithStatus({err,data,callback,s}) 
 	});
 }
 
-md.findNameByPwd = function(){}
+md.findByPwdAndMobile = function(option, callback) {
+    const {pwd, mobile} = option;
+    var s = sql.findByPwdAndMobile(pwd, mobile);
+    db(s, function(err, data){
+        common.handleDataWithStatus({err,data,callback,s}) 
+    })
+}
 
 
 module.exports=md;

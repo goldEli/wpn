@@ -1,7 +1,7 @@
 var md = {}
 
 md.handleDataWithStatus = function(options) {
-    var {callback, err, data, type} = options;
+    var {callback, err, data,s} = options;
     var o = {data:null, msg: 'SUCCESS', status: 0}
     if(err){
         o.status = 1;
@@ -10,6 +10,8 @@ md.handleDataWithStatus = function(options) {
         return;
     }
     o.data = data  
+    console.log('sql:',s)
+    console.log('data:',o)
     callback(o)
 }
 

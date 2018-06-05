@@ -24,29 +24,33 @@ export default class Login extends React.Component {
     
     this.setState({[e.target.name]:  e.target.value});
   }
-  _submit = () => {
-    const {mobile, password} = this.state;
+  _handleTips = () => {
+    e => {
+      if (this.state.showToptips) return;
+      this.setState({ showToptips: !this.state.showToptips });
+      window.setTimeout(
+        e => this.setState({ showToptips: !this.state.showToptips }),
+        2000
+      );
+    }
   }
-  componentDidMount() {
-    
-    api.users({
-      success: (data) => {
+  _handleSubmit = () => {
+    const {mobile, pwd} = this.state;
+    api.login({
+      success:function(data){
         console.log(data)
-      }
+      },
+      param:{pwd, mobile}
     })
-    // api.login({
-    //   success: (data) => {
-    //     console.log(data)
-    //   }
-    // })
   }
+ 
   render() {
     return (
       <div className="wpn-login" style={{paddingTop: '10%'}}>
         <Form>
           <FormCell>
             <CellHeader>
-              <Label>Username</Label>
+              <Label>Mobile</Label>
             </CellHeader>
             <CellBody>
               <Input placeholder="Enter your phone number" name="mobile" onChange={this._handleInputChange}/>
@@ -57,21 +61,14 @@ export default class Login extends React.Component {
               <Label>Password</Label>
             </CellHeader>
             <CellBody>
-              <Input name="password" placeholder="Enter your password" onChange={this._handleInputChange}/>
+              <Input name="pwd" placeholder="Enter your password" onChange={this._handleInputChange}/>
             </CellBody>
           </FormCell>
         </Form>
         <ButtonArea>
           <Button
             //button to display toptips
-            onClick={e => {
-              if (this.state.showToptips) return;
-              this.setState({ showToptips: !this.state.showToptips });
-              window.setTimeout(
-                e => this.setState({ showToptips: !this.state.showToptips }),
-                2000
-              );
-            }}
+            onClick={this._handleSubmit}
           >
             OK
           </Button>

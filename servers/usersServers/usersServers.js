@@ -17,4 +17,9 @@ md.addUser = function(addParams, cb) {
     usersDao.insert(addParams, cb)
 }
 
+// find userinfo by pwd and name
+md.findUserInfoByPwdAndMobile = function(option, cb) {
+    usersDao.findByPwdAndMobile(option, cb)
+}
+
 module.exports = md;

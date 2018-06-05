@@ -6,9 +6,12 @@ var usersServers = require('../servers/usersServers/usersServers');
 
 router.post('/', function(req, res, next) {
   usersServers.queryallUsers(function(data){
-    var cookie = req.headers.cookie || "";
-    res.send({cookie, req:req.session});
-    // res.send(data);
+    var Cookies = {};
+    req.headers.cookie && req.headers.cookie.split(';').forEach(function( Cookie ) {
+        var parts = Cookie.split('=');
+        Cookies[ parts[ 0 ].trim() ] = ( parts[ 1 ] || '' ).trim();
+    });
+    res.send(Cookies);
   })
 });
 
@@ -32,21 +35,22 @@ router.post('/del', function(req, res, next){
 
 // login
 router.post('/login', function(req, res, next){
-  req.session.user = '123';
-  req.session.isLogin = true;
-  res.send(req.session.user)
+  var {pwd, mobile} = req.body;
+  usersServers.findUserInfoByPwdAndMobile({pwd,mobile}, function(data){
+    if (data.data.length>0) {
+      console.log(data)
+      req.session.user = data.data[0]
+      res.send({status:2,data:{url:'/home'}})
+    }else{
+      console.log('login faild')
+    }
+  })
 })
-
-function logout(){
-	return function(req,res){
-		//清除session，cookie
-		req.session.destroy(function(){
-			res.clearCookie("user",{});
-			res.cookie("isLogin","false");
-			res.redirect("/");
-		});
-	};
-};
+// log out
+router.post('/logout', function(req, res, next){
+  req.session.user = null;
+  res.send({status:2,data:{url:'/login'}})
+})
 
 
 module.exports = router;
