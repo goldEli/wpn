@@ -36,10 +36,10 @@ const handleFetch = function(options) {
       }
     })
     .then(res => {
+      if (!res) return
       if (typeof res === 'string') {
-        res = JSON.parse(res);
-      } 
-      
+        res = JSON.parse(res)
+      }
       switch (res.status) {
         case 0:
           if (success) {
