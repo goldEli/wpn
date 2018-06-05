@@ -22,9 +22,6 @@ app.use(session({
   secret:'asdfsadsdf',
   resave: false,
   saveUninitialized: true,
-  store: new MongoStore({ 
-    db: settings.db 
-   }), 
   // cookie: {maxAge: 14*24*60*60*1000} // 14 天
 }));
 app.use(express.static(path.join(__dirname, 'public')));
