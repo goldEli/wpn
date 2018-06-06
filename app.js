@@ -24,24 +24,25 @@ app.use(session({
   saveUninitialized: true,
   // cookie: {maxAge: 14*24*60*60*1000} // 14 天
 }));
-app.use(express.static(path.join(__dirname, 'public')));
-app.use(function(req, res, next) {
-  console.log('req.session.user====',req.session.user)
-  // 第一次登陆
-  if (req.url === '/users/login') {
-    if (req.session && req.session.user) {
-      res.send({status:2,data:{url:'/home'}})
-    } else {
-      next();
-    }
-    return;
-  }
-  if (req.session && req.session.user) {
-    next();
-  } else {
-    res.send({status:2,data:{url:'/login'}})
-  }
-});
+app.use(express.static(path.join(__dirname, 'public/build')));
+// app.use(function(req, res, next) {
+//   console.log('req.session.user====',req.session.user)
+//   // 第一次登陆
+//   if (req.url === '/users/login') {
+//     if (req.session && req.session.user) {
+//       res.json({status:2,data:{url:'home'}})
+//     } else {
+//       next();
+//     }
+//     return;
+//   }
+//   if (req.session && req.session.user) {
+//     next();
+//   } else {
+//     // next();
+//     res.json({status:2,data:{url:'login'}})
+//   }
+// });
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 

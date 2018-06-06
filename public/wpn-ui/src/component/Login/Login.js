@@ -2,7 +2,6 @@ import React from "react";
 import {
   ButtonArea,
   Button,
-  Cell,
   CellHeader,
   CellBody,
   Form,
@@ -11,50 +10,50 @@ import {
   Label,
   Toptips
 } from "react-weui";
-import api from '../../api/api'
+import api from "../../api/api";
 
 export default class Login extends React.Component {
-  constructor(props){
+  constructor(props) {
     super(props);
     this.state = {
-      showToptips: false,
-    }
+      showToptips: false
+    };
   }
-  _handleInputChange = (e) => { 
-    this.setState({[e.target.name]:  e.target.value});
-  }
+  _handleInputChange = e => {
+    this.setState({ [e.target.name]: e.target.value });
+  };
   _handleTips = () => {
-    e => {
-      if (this.state.showToptips) return;
-      this.setState({ showToptips: !this.state.showToptips });
-      window.setTimeout(
-        e => this.setState({ showToptips: !this.state.showToptips }),
-        2000
-      );
-    }
-  }
+    if (this.state.showToptips) return;
+    this.setState({ showToptips: !this.state.showToptips });
+    window.setTimeout(
+      this.setState({ showToptips: !this.state.showToptips }),
+      2000
+    );
+  };
   _handleSubmit = () => {
-    const {mobile, pwd} = this.state;
+    const { mobile, pwd } = this.state;
     api.login({
-      success:function(data){
-        console.log(data)
+      success: function(data) {
+        console.log(data);
       },
-      param:{pwd, mobile}
-    })
-  }
-  _handleRegister = () => {
-    
-  }
+      param: { pwd, mobile }
+    });
+  };
+  _handleRegister = () => {};
   render() {
     return (
-      <div className="wpn-login" style={{paddingTop: '10%'}}>
+      <div className="wpn-login" style={{ paddingTop: "10%" }}>
         <Form>
           <FormCell>
             <CellHeader>
               <Label>Mobile</Label>
             </CellHeader>
             <CellBody>
-              <Input placeholder="Enter your phone number" name="mobile" onChange={this._handleInputChange}/>
+              <Input
+                placeholder="Enter your phone number"
+                name="mobile"
+                onChange={this._handleInputChange}
+              />
             </CellBody>
           </FormCell>
           <FormCell>
@@ -62,7 +61,11 @@ export default class Login extends React.Component {
               <Label>Password</Label>
             </CellHeader>
             <CellBody>
-              <Input name="pwd" placeholder="Enter your password" onChange={this._handleInputChange}/>
+              <Input
+                name="pwd"
+                placeholder="Enter your password"
+                onChange={this._handleInputChange}
+              />
             </CellBody>
           </FormCell>
         </Form>

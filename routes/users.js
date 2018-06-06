@@ -34,7 +34,7 @@ router.post('/login', function(req, res, next){
   usersServers.findUserInfoByPwdAndMobile({pwd,mobile}, function(data){
     if (data.data.length>0) {
       req.session.user = data.data[0]
-      res.json({status:2,data:{url:'/home'}})
+      res.json({status:2,data:{url:'home'}})
     }else{
       console.log('login faild')
     }
@@ -44,7 +44,7 @@ router.post('/login', function(req, res, next){
 // log out
 router.post('/logout', function(req, res, next){
   req.session.user = null;
-  res.json({status:2,data:{url:'/login'}})
+  res.json({status:2,data:{url:'login'}})
 })
 
 // user info

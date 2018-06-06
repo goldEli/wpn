@@ -1,17 +1,7 @@
 import React from "react";
 import {
-  Page,
-  ButtonArea,
-  Button,
-  Cell,
-  CellHeader,
-  CellBody,
-  Cells,
-  CellsTitle,
-  CellFooter,
   Tab,
   TabBarItem,
-  Article
 } from "react-weui";
 import api from "../../api/api";
 import Goods from "./Goods/Goods";
@@ -45,21 +35,21 @@ export default class Home extends React.Component {
       <div className="fill">
         <Tab type="tabbar">
           <TabBarItem
-            style={{ height: "0.5rem", fontSize: "0.2rem" }}
+            style={{ height: "2rem", fontSize: "0.5rem" }}
             icon={<i className="fa fa-home navLinkIco" />}
             label="统计"
           >
             <UserDetail />
           </TabBarItem>
           <TabBarItem
-            style={{ height: "0.5rem", fontSize: "0.2rem" }}
+            style={{ height: "2rem", fontSize: "0.5rem" }}
             icon={<i className="fa fa-home navLinkIco" />}
             label="商品"
           >
             <Goods />
           </TabBarItem>
           <TabBarItem
-            style={{ height: "0.5rem", fontSize: "0.2rem" }}
+            style={{ height: "2rem", fontSize: "0.5rem" }}
             icon={<i className="fa fa-home navLinkIco" />}
             label="我的"
           >

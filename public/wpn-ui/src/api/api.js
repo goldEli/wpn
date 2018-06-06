@@ -17,7 +17,6 @@ const handleFetch = function(options) {
   fetch(url, {
     body: JSON.stringify(param || {}), // must match 'Content-Type' header
     cache: "no-cache", // *default, no-cache, reload, force-cache, only-if-cached
-    credentials: "same-origin", // include, same-origin, *omit
     headers: {
       "user-agent": "Mozilla/4.0 MDN Example",
       "content-type": "application/json"
@@ -50,7 +49,7 @@ const handleFetch = function(options) {
           alert(res.msg);
           break;
         case 2:
-          window.location.pathname = res.data.url;
+          window.location.hash = res.data.url;
           break;
         default:
           break;
