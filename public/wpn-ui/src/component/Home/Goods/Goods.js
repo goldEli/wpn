@@ -68,16 +68,27 @@ export default class Goods extends React.Component {
                 {e.des}
               </p>
             </div>
-            <div style={{ width: "2rem", height: "1rem" }} className="flex-row">
-              <div style={{lineHeight:'1.1rem'}}>
-                <i className="fa fa-minus-circle fontsize40" />
+            <div style={{ width: "3rem", height: "1rem" }} className="flex-row">
+              <div style={{ lineHeight: "1.1rem" }}>
+                <i
+                  style={{ fontSize: "0.7rem" }}
+                  className="fa fa-minus-circle"
+                />
               </div>
-              <div style={{ display: "block", flex: 1, lineHeight:'1rem', textAlign:'center' }}>
+              <div
+                style={{
+                  display: "block",
+                  flex: 1,
+                  lineHeight: "1rem",
+                  textAlign: "center"
+                }}
+              >
                 <p className="fontsize40">123</p>
               </div>
-              <div style={{lineHeight:'1.1rem'}}>
+              <div style={{ lineHeight: "1.1rem" }}>
                 <i
-                  className="fa fa-plus-circle fontsize40"
+                  style={{ fontSize: "0.7rem" }}
+                  className="fa fa-plus-circle"
                 />
               </div>
             </div>
@@ -88,7 +99,7 @@ export default class Goods extends React.Component {
   };
   render() {
     return (
-      <div className="fill" style={{ fontSize: "0.2rem" }}>
+      <div className="fill flex-column" style={{ fontSize: "0.2rem" }}>
         <div
           style={{ height: "1.5rem", width: "100%" }}
           className="co_bg_black"
@@ -136,7 +147,9 @@ export default class Goods extends React.Component {
             请选择
           </div>
         </div>
-        <div className="weui-panel weui-panel_access">{this._renderList()}</div>
+        <div style={{ width: "100%", flex: 1, overflow: "auto" }}>
+          {this._renderList()}
+        </div>
       </div>
     );
   }

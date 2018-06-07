@@ -77,6 +77,7 @@ export default class Login extends React.Component {
           <input
             style={{ ...style.item }}
             name="pwd"
+            type="password"
             placeholder="请输入密码"
             onChange={this._handleInputChange}
           />
