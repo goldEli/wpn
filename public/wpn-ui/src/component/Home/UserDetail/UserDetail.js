@@ -4,57 +4,23 @@
 
 import React from "react";
 import { Page, Grids } from "react-weui";
+import Common from '../../Common/Common';
 
 const data = [
-  {
-    icon: <i className="fa fa-home navLinkIco" />,
-    label: "当日销量: 123",
-    href: "javascript:;"
-  },
-  {
-    icon: <i className="fa fa-home navLinkIco" />,
-    label: "当月销量: 123",
-    href: "javascript:;"
-  },
-  {
-    icon: <i className="fa fa-home navLinkIco" />,
-    label: "累计销量: 123",
-    href: "javascript:;"
-  },
-  {
-    icon: <i className="fa fa-home navLinkIco" />,
-    label: "团队日销: 23423",
-    href: "javascript:;"
-  },
-  {
-    icon: <i className="fa fa-home navLinkIco" />,
-    label: "团队月销: 2344",
-    href: "javascript:;"
-  },
-  {
-    icon: <i className="fa fa-home navLinkIco" />,
-    label: "团队累计销量: 2332",
-    href: "javascript:;"
-  },
-  {
-    icon: <i className="fa fa-home navLinkIco" />,
-    label: "当月团队奖金: 21",
-    href: "javascript:;"
-  },
-  {
-    icon: <i className="fa fa-home navLinkIco" />,
-    label: "当月累计奖金: 32",
-    href: "javascript:;"
-  }
+  {key: 'todaySales', label: '当日销量:', value: '432', inputName: 'todaySales',},
+  {key: 'totalSales', label: '累计销量:', value: '42345', inputName: 'totalSales',},
+  {key: 'teamSales', label: '团队日销:', value: '345', inputName: 'teamSales',},
+  {key: 'teamMonthSales', label: '团队月销:', value: '43534', inputName: 'teamMonthSales',},
+  {key: 'TeamTotalSales', label: '团队累计销量:', value: '2343', inputName: 'TeamTotalSales',},
+  {key: 'TeamMonthBouns', label: '当月团队奖金:', value: '45645', inputName: 'TeamMonthBouns',},
+  {key: 'totalMonthBouns', label: '当月累计奖金:', value: '2343', inputName: 'totalMonthBouns',},
 ];
 
 export default class UserDetail extends React.Component {
   render() {
     return (
-      <div className="fill" style={{ fontSize: "0.2rem" }}>
-        <Page className="grid" title="Grid" subTitle="九宫格">
-          <Grids data={data} />
-        </Page>
+      <div className="fill">
+        {Common.renderForm(data)}
       </div>
     );
   }

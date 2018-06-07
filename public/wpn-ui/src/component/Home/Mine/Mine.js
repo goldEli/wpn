@@ -1,65 +1,80 @@
 import React from "react";
 import { Page, Grids } from "react-weui";
-import api from '../../../api/api';
+import api from "../../../api/api";
 
 const data = [
   {
-    icon: <i className="fa fa-home navLinkIco" />,
+    icon: "fa-users",
     label: "下级代理管理",
-    href: "javascript:;"
   },
   {
-    icon: <i className="fa fa-home navLinkIco" />,
+    icon: "fa-user-plus",
     label: "添加代理",
-    href: "javascript:;"
   },
   {
-    icon: <i className="fa fa-home navLinkIco" />,
+    icon: "fa-drivers-license",
     label: "下级代理审核",
-    href: "javascript:;"
   },
   {
-    icon: <i className="fa fa-home navLinkIco" />,
+    icon: "fa-paste",
     label: "我的订单",
-    href: "javascript:;"
   },
   {
-    icon: <i className="fa fa-home navLinkIco" />,
+    icon: "fa-address-book-o",
     label: "收货地址管理",
-    href: "javascript:;"
   },
   {
-    icon: <i className="fa fa-home navLinkIco" />,
+    icon: "fa-edit",
     label: "修改个人信息",
-    href: "javascript:;"
   },
   {
-    icon: <i className="fa fa-home navLinkIco" />,
+    icon: "fa-key",
     label: "修改密码",
-    href: "javascript:;"
   },
   {
-    icon: <i className="fa fa-home navLinkIco" />,
+    icon: "fa-cny",
     label: "我的奖金",
-    href: "javascript:;"
   },
   {
-    icon: <i onClick={this._handleLogout} className="fa fa-home navLinkIco" />,
-    label: "退出",
-    href: "javascript:;"
+    icon: "fa-power-off",
+    label: "注销",
+    onClick: () => {
+      window.location.hash = 'login'
+    }
   }
 ];
 
 export default class Mine extends React.Component {
   _handleLogout = () => {
-    api.logout()
-  }
+    api.logout();
+  };
+  _renderContent = () => {
+    return (
+      <div className="weui-grids" style={{paddingTop:'1rem'}}>
+        {data.map((e, i) => {
+          const {label, icon, onClick} = e;
+          return (
+            <div onClick={onClick} key={i} style={{ width: "33.3%", float: 'left', padding:"1rem 0 1rem 0",border:'1px solid grey' }}>
+              <div className="weui-grid__label" style={{ fontSize: "0.4rem" }}>
+                <i
+                  className={"fa navLinkIco "+e.icon}
+                  style={{ fontSize: "0.8rem", display: "block" }}
+                  aria-hidden="true"
+                />
+              </div>
+              <div className="weui-grid__label" style={{ fontSize: "0.3rem" }}>
+                {e.label}
+              </div>
+            </div>
+          );
+        })}
+      </div>
+    );
+  };
   render() {
     return (
       <div className="fill" style={{ fontSize: "0.2rem" }}>
-        <Page className="grid" title="Grid" subTitle="九宫格">
-          <Grids data={data} />
-        </Page>
+        {this._renderContent()}
       </div>
     );
   }
