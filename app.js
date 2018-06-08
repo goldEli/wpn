@@ -6,7 +6,6 @@ var logger = require('morgan');
 var session = require('express-session');
 
 var indexRouter = require('./routes/index');
-var usersRouter = require('./routes/users');
 
 var app = express();
 
@@ -25,26 +24,25 @@ app.use(session({
   // cookie: {maxAge: 14*24*60*60*1000} // 14 天
 }));
 app.use(express.static(path.join(__dirname, 'public/build')));
-// app.use(function(req, res, next) {
-//   console.log('req.session.user====',req.session.user)
-//   // 第一次登陆
-//   if (req.url === '/users/login') {
-//     if (req.session && req.session.user) {
-//       res.json({status:2,data:{url:'home'}})
-//     } else {
-//       next();
-//     }
-//     return;
-//   }
-//   if (req.session && req.session.user) {
-//     next();
-//   } else {
-//     // next();
-//     res.json({status:2,data:{url:'login'}})
-//   }
-// });
+app.use(function(req, res, next) {
+  console.log('req.session.user====',req.session.user)
+  // 第一次登陆
+  if (req.url === '/users/login') {
+    if (req.session && req.session.user) {
+      res.json({status:2,data:{url:'home'}})
+    } else {
+      next();
+    }
+    return;
+  }
+  if (req.session && req.session.user) {
+    next();
+  } else {
+    // next();
+    res.json({status:2,data:{url:'login'}})
+  }
+});
 app.use('/', indexRouter);
-app.use('/users', usersRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

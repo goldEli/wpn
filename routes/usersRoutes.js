@@ -1,7 +1,6 @@
 var express = require('express');
 var router = express.Router();
 var UUID = require('node-uuid');
-var URL = require('url');
 var usersServers = require('../servers/usersServers/usersServers');
 
 router.post('/', function(req, res, next) {
@@ -36,7 +35,7 @@ router.post('/login', function(req, res, next){
       req.session.user = data.data[0]
       res.json({status:2,data:{url:'home'}})
     }else{
-      console.log('login faild')
+      res.json({status:1,msg:"账号密码错误"})
     }
   })
 })

@@ -1,5 +1,4 @@
 import React from "react";
-import { Page, Grids } from "react-weui";
 import api from "../../../api/api";
 
 const data = [
@@ -57,13 +56,13 @@ export default class Mine extends React.Component {
             <div onClick={onClick} key={i} style={{ width: "33.3%", float: 'left', padding:"1rem 0 1rem 0",border:'1px solid grey' }}>
               <div className="weui-grid__label" style={{ fontSize: "0.4rem" }}>
                 <i
-                  className={"fa navLinkIco "+e.icon}
+                  className={"fa navLinkIco "+icon}
                   style={{ fontSize: "0.8rem", display: "block" }}
                   aria-hidden="true"
                 />
               </div>
               <div className="weui-grid__label" style={{ fontSize: "0.3rem" }}>
-                {e.label}
+                {label}
               </div>
             </div>
           );

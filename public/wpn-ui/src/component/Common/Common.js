@@ -1,14 +1,11 @@
 import React from "react";
 import {
-  ButtonArea,
-  Button,
   CellHeader,
   CellBody,
   Form,
   FormCell,
   Input,
   Label,
-  Toptips
 } from "react-weui";
 
 const md = {};

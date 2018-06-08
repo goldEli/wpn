@@ -1,5 +1,4 @@
 import React from "react";
-import { Tab, TabBarItem } from "react-weui";
 import api from "../../api/api";
 import Goods from "./Goods/Goods";
 import Mine from "./Mine/Mine";
@@ -75,16 +74,12 @@ export default class Home extends React.Component {
     switch (curTab) {
       case MAP_TAB.USER_DETAIL:
         return <UserDetail />;
-        break;
       case MAP_TAB.GOODS:
         return <Goods />;
-        break;
       case MAP_TAB.MINE:
         return <Mine />;
-        break;
       default:
         return <div>no content</div>
-        break;
     }
   };
   render() {
@@ -100,28 +95,3 @@ export default class Home extends React.Component {
   }
 }
 
-{
-  /* <Tab type="tabbar">
-  <TabBarItem
-  style={{ height: "2rem", fontSize: "0.5rem" }}
-  icon={<i className="fa fa-home navLinkIco" />}
-  label="统计"
-  >
-  <UserDetail />
-  </TabBarItem>
-  <TabBarItem
-  style={{ height: "2rem", fontSize: "0.5rem" }}
-  icon={<i className="fa fa-home navLinkIco" />}
-  label="商品"
-  >
-  <Goods />
-  </TabBarItem>
-  <TabBarItem
-  style={{ height: "2rem", fontSize: "0.5rem" }}
-  icon={<i className="fa fa-home navLinkIco" />}
-  label="我的"
-  >
-  <Mine />
-  </TabBarItem>
-  </Tab> */
-}

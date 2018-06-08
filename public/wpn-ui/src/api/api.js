@@ -9,7 +9,8 @@ const urls = {
   delUser: "/users/del",
   login: "/users/login",
   logout: "/users/logout",
-  userInfo: "/users/userInfo"
+  userInfo: "/users/userInfo",
+  queryAllGoods: "/goods/queryAllGoods",
 };
 
 const handleFetch = function(options) {

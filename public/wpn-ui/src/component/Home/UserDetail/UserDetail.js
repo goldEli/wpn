@@ -3,7 +3,6 @@
  */
 
 import React from "react";
-import { Page, Grids } from "react-weui";
 import Common from '../../Common/Common';
 
 const data = [

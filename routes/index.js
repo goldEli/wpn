@@ -1,6 +1,7 @@
 var express = require('express');
 var router = express.Router();
-var users = require('./users');
+var usersRoutes = require('./usersRoutes');
+var goodsRoutes = require('./goodsRoutes');
 
 console.log("===================")
 
@@ -13,6 +14,7 @@ router.get('/', function(req, res, next) {
 });
 
 // mount user routes at /users
-router.use('/users', users);
+router.use('/users', usersRoutes);
+router.use('/goods', goodsRoutes);
 
 module.exports = router;
