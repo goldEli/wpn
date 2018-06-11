@@ -134,13 +134,19 @@ body {
   flex-direction: row;
 }
 .co_black{
-  color: rgb(1,0,3)
+  color: rgb(1,0,3);
+}
+.co_bd_black{
+  border-color: rgb(1,0,3);
 }
 .co_bg_black{
-  background: rgb(1,0,3)
+  background: rgb(1,0,3);
 }
 .co_white{
-  color: #fff
+  color: #fff;
+}
+.co_bd_white{
+  border-color: #fff;
 }
 .co_bg_white{
   background: #fff;
@@ -148,8 +154,15 @@ body {
 .co_red{
   color: #F43530;
 }
+.co_bd_red{
+  border-color: #F43530;
+}
 .co_bg_red{
   background: #F43530;
+}
+
+.border_style{
+  border-style: solid;
 }
 
 a {

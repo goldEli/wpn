@@ -7,6 +7,7 @@ import {
   Input,
   Label,
 } from "react-weui";
+import renderSubPage from './renderSubPage';
 
 const md = {};
 
@@ -38,5 +39,7 @@ md.renderForm = (data) => {
     </Form>
   )
 }
+
+md.renderSubPage = renderSubPage;
 
 export default md;

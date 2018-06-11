@@ -3,7 +3,10 @@
  */
 import React from "react";
 import api from "../../../api/api";
-
+import utils from '../../../libs/utils/utils';
+import Order from '../Order/Order';
+import Common from '../../Common/Common';
+const {renderSubPage} = Common;
 export default class Goods extends React.Component {
   constructor(props) {
     super(props);
@@ -17,6 +20,7 @@ export default class Goods extends React.Component {
   }
   componentDidMount() {
     this._setGoodsData();
+    renderSubPage({title:"我的订单", children:<Order/>})
   }
   _setGoodsData = () => {
     api.queryAllGoods({
@@ -32,7 +36,7 @@ export default class Goods extends React.Component {
     data.forEach((e, i) => {
       if (id === e.id) {
         e.count += 1;
-        this._handleOrder(id, orderInfo, 'plus')
+        this._handleOrder(id, orderInfo, "plus");
       }
     });
     this.setState({ goods: data });
@@ -41,13 +45,13 @@ export default class Goods extends React.Component {
     data.forEach((e, i) => {
       if (id === e.id && e.count > 0) {
         e.count -= 1;
-        this._handleOrder(id, orderInfo, 'minus')
+        this._handleOrder(id, orderInfo, "minus");
       }
     });
     this.setState({ goods: data });
   };
   _handleOrder = (id, orderInfo, type) => {
-    const o = JSON.parse(JSON.stringify(orderInfo))
+    const o = utils.clone(orderInfo);
     let { totalCount, selectdGoods } = o;
     if (type === "minus") {
       totalCount -= 1;
@@ -55,7 +59,7 @@ export default class Goods extends React.Component {
         if (e.id === id) {
           e.count -= 1;
           if (e.count === 0) {
-            selectdGoods.splice(i,1)
+            selectdGoods.splice(i, 1);
           }
         }
       });
@@ -159,6 +163,12 @@ export default class Goods extends React.Component {
       );
     });
   };
+  _handleShowOrderPage = (orderInfo) => {
+    const {totalCount} = orderInfo;
+    if (totalCount === 0) {
+      alert("请先选择商品！")
+    }
+  }
   render() {
     const { goods, orderInfo } = this.state;
     return (
@@ -199,6 +209,7 @@ export default class Goods extends React.Component {
           </div>
           <div
             className="co_bg_red co_white fontsize40"
+            onClick={()=>this._handleShowOrderPage(orderInfo)}
             style={{
               width: "3rem",
               height: "100%",
