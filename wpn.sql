@@ -11,7 +11,7 @@
  Target Server Version : 50722
  File Encoding         : 65001
 
- Date: 12/06/2018 13:02:31
+ Date: 12/06/2018 17:28:11
 */
 
 SET NAMES utf8mb4;
@@ -52,6 +52,7 @@ CREATE TABLE `orders` (
   `express` varchar(32) DEFAULT NULL,
   `selected_goods` varchar(255) DEFAULT NULL,
   `status` int(16) DEFAULT NULL,
+  `time` datetime DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -59,9 +60,11 @@ CREATE TABLE `orders` (
 -- Records of orders
 -- ----------------------------
 BEGIN;
-INSERT INTO `orders` VALUES ('6d05f5ae-6deb-11e8-8428-ab63ed7b9ea9', 'c0a42bfcd79545ec98a8fc72ebbbb8d6', '{\"consignees\":\"小王\",\"mobile\":\"13564233784\",\"adress\":\"成都双流机场\"}', 'alipay', '顺丰', '[{\"count\":2,\"name\":\"冷吃兔\",\"price\":20.23},{\"count\":1,\"name\":\"五香兔\",\"price\":19.2}]', 1);
-INSERT INTO `orders` VALUES ('a0d5994c-6df1-11e8-8428-ab63ed7b9ea9', 'c0a42bfcd79545ec98a8fc72ebbbb8d6', '{}', 'alipay', '申通', '[{\"count\":2,\"name\":\"冷吃兔\",\"price\":20.23}]', 1);
-INSERT INTO `orders` VALUES ('b228d0f2-6deb-11e8-8428-ab63ed7b9ea9', 'c0a42bfcd79545ec98a8fc72ebbbb8d6', '{\"consignees\":\"小张\",\"mobile\":\"13098563254\",\"adress\":\"成都金牛区西门先生\"}', 'wepay', '申通', '[{\"count\":2,\"name\":\"冷吃兔\",\"price\":20.23},{\"count\":1,\"name\":\"五香兔\",\"price\":19.2}]', 1);
+INSERT INTO `orders` VALUES ('175293d4-6e03-11e8-8428-ab63ed7b9ea9', 'c0a42bfcd79545ec98a8fc72ebbbb8d6', '{\"consignees\":\"李四\",\"mobile\":\"13890774533\",\"adress\":\"四川自贡\"}', 'wepay', '申通', '[{\"count\":2,\"name\":\"冷吃兔\",\"price\":20.23},{\"count\":1,\"name\":\"五香兔\",\"price\":19.2}]', 1, '2018-06-12 13:40:19');
+INSERT INTO `orders` VALUES ('2c583cca-6e03-11e8-8428-ab63ed7b9ea9', 'c0a42bfcd79545ec98a8fc72ebbbb8d6', '{\"consignees\":\"王五\",\"mobile\":\"13654237890\",\"adress\":\"四川成都\"}', 'alipay', '申通', '[{\"count\":2,\"name\":\"冷吃兔\",\"price\":20.23},{\"count\":1,\"name\":\"五香兔\",\"price\":19.2}]', 0, '2018-06-12 16:44:49');
+INSERT INTO `orders` VALUES ('605bb4bc-6e16-11e8-8428-ab63ed7b9ea9', 'c0a42bfcd79545ec98a8fc72ebbbb8d6', '{\"consignees\":\"小王\",\"mobile\":\"13454887643\",\"adress\":\"成都金牛区\"}', 'alipay', '申通', '[{\"count\":2,\"name\":\"冷吃兔\",\"price\":20.23},{\"count\":2,\"name\":\"五香兔\",\"price\":19.2}]', 1, '2018-06-12 15:58:21');
+INSERT INTO `orders` VALUES ('63c7fe68-6e1a-11e8-8428-ab63ed7b9ea9', '0b9f9ce3c56d475ea3e86de94152993a', '{\"consignees\":\"130用户\",\"mobile\":\"13098762361\",\"adress\":\"成都锦江区\"}', 'alipay', '顺丰', '[{\"count\":2,\"name\":\"冷吃兔\",\"price\":20.23},{\"count\":1,\"name\":\"五香兔\",\"price\":19.2}]', 1, '2018-06-12 16:27:05');
+INSERT INTO `orders` VALUES ('f078c9d4-6e04-11e8-8428-ab63ed7b9ea9', 'c0a42bfcd79545ec98a8fc72ebbbb8d6', '{\"consignees\":\"李华\",\"mobile\":\"13876553266\",\"adress\":\"成都德阳\"}', 'wepay', '申通', '[{\"count\":2,\"name\":\"冷吃兔\",\"price\":20.23},{\"count\":2,\"name\":\"五香兔\",\"price\":19.2}]', 1, '2018-06-12 13:53:32');
 COMMIT;
 
 -- ----------------------------

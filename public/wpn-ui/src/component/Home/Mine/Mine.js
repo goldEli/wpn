@@ -1,5 +1,8 @@
 import React from "react";
 import api from "../../../api/api";
+import OrderManager from "../OrderManager/OrderManager";
+import Common from "../../Common/Common";
+const { renderSubPage } = Common;
 
 const data = [
   {
@@ -17,6 +20,9 @@ const data = [
   {
     icon: "fa-paste",
     label: "我的订单",
+    onClick: () => {
+      renderSubPage({ title: "我的订单", children: <OrderManager /> });
+    }
   },
   {
     icon: "fa-address-book-o",
@@ -38,7 +44,7 @@ const data = [
     icon: "fa-power-off",
     label: "注销",
     onClick: () => {
-      window.location.hash = 'login'
+      api.logout()
     }
   }
 ];

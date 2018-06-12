@@ -4,8 +4,10 @@ var common = require("../common");
 // status: 0： 支付, 1: 未支付
 var sql = {
   findAll: "SELECT * FROM orders",
+  findById: "SELECT * FROM orders WHERE user_id=",
   insert:
-    "INSERT INTO orders(id,time,user_id,adress_info,pay_method,express,selected_goods,status) VALUES(UUID(),NOW(),?,?,?,?,?,?)"
+    "INSERT INTO orders(id,time,user_id,adress_info,pay_method,express,selected_goods,status) VALUES(UUID(),NOW(),?,?,?,?,?,?)",
+  
 };
 
 var md = {};
@@ -17,9 +19,15 @@ md.findAll = function(callback) {
   });
 };
 
+md.findById = function(id, callback) {
+  var s = sql.findById + `'` + id + `'`;
+  db(s, function(err, data) {
+    common.handleDataWithStatus({ err, data, callback, s });
+  });
+};
+
 md.insert = function(addParam, callback) {
   var s = sql.insert;
-  console.log("addParam", addParam);
   db(
     s,
     function(err, data) {

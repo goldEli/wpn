@@ -13,4 +13,11 @@ router.post("/insertOrder", function(req, res, next) {
   );
 });
 
+router.post('/findAllOrders', function(req, res, next) {
+  var {id} = req.session.user;
+  ordersServers.findOrdersById(id, function(data){
+    res.json(data)
+  })
+})
+
 module.exports = router;

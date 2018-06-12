@@ -1,5 +1,5 @@
 /**
- * Created by n7best
+ * Created by miaoyu
  */
 import React from "react";
 import api from "../../../api/api";
@@ -169,7 +169,7 @@ export default class Goods extends React.Component {
       alert("请先选择商品！");
       return;
     }
-    renderSubPage({ title: "我的订单", children: <Order data={orderInfo} /> });
+    renderSubPage({ title: "订单", children: <Order data={orderInfo} /> });
   };
   render() {
     const { goods, orderInfo } = this.state;
