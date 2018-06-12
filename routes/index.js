@@ -2,6 +2,7 @@ var express = require('express');
 var router = express.Router();
 var usersRoutes = require('./usersRoutes');
 var goodsRoutes = require('./goodsRoutes');
+var ordersRoutes = require('./ordersRoutes');
 
 console.log("===================")
 
@@ -16,5 +17,6 @@ router.get('/', function(req, res, next) {
 // mount user routes at /users
 router.use('/users', usersRoutes);
 router.use('/goods', goodsRoutes);
+router.use('/orders', ordersRoutes);
 
 module.exports = router;

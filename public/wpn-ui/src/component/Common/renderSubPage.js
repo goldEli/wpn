@@ -1,13 +1,11 @@
 import React from "react";
-import PropTypes from "prop-types";
 import ReactDom from "react-dom";
 
 const renderLayout = (_handleClose, option) => {
   const {title, children} = option;
-  console.log(option)
   return (
     <div
-      className="co_bg_white flex-column"
+      className="co_bg_common flex-column"
       style={{
         width: "100%",
         height: "100%"
@@ -22,9 +20,9 @@ const renderLayout = (_handleClose, option) => {
         }}
         className="co_bd_black border_style"
       >
-        <i onClick={_handleClose} className="fa fa-chevron-left fontsize40" />
+        <i onClick={_handleClose} className="fa fa-chevron-left font-size-primary" />
         <span
-          className="fontsize40"
+          className="font-size-primary"
           style={{ textIndent: "0.5rem", display: "inline-block" }}
         >
           {title || "标题"}

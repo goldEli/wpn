@@ -7,7 +7,7 @@ var md = {}
  */
 md.clone = function(obj) {
   var o;
-  if (typeof obj == "object") {
+  if (typeof obj === "object") {
       if (obj === null) {
           o = null;
       } else {

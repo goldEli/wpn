@@ -11,6 +11,7 @@ const urls = {
   logout: "/users/logout",
   userInfo: "/users/userInfo",
   queryAllGoods: "/goods/queryAllGoods",
+  insertOrder: "/orders/insertOrder",
 };
 
 const handleFetch = function(options) {

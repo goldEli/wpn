@@ -3,10 +3,10 @@
  */
 import React from "react";
 import api from "../../../api/api";
-import utils from '../../../libs/utils/utils';
-import Order from '../Order/Order';
-import Common from '../../Common/Common';
-const {renderSubPage} = Common;
+import utils from "../../../libs/utils/utils";
+import Order from "../Order/Order";
+import Common from "../../Common/Common";
+const { renderSubPage } = Common;
 export default class Goods extends React.Component {
   constructor(props) {
     super(props);
@@ -20,7 +20,6 @@ export default class Goods extends React.Component {
   }
   componentDidMount() {
     this._setGoodsData();
-    renderSubPage({title:"我的订单", children:<Order/>})
   }
   _setGoodsData = () => {
     api.queryAllGoods({
@@ -36,7 +35,7 @@ export default class Goods extends React.Component {
     data.forEach((e, i) => {
       if (id === e.id) {
         e.count += 1;
-        this._handleOrder(id, orderInfo, "plus");
+        this._handleOrder(id, orderInfo, "plus", data);
       }
     });
     this.setState({ goods: data });
@@ -45,12 +44,12 @@ export default class Goods extends React.Component {
     data.forEach((e, i) => {
       if (id === e.id && e.count > 0) {
         e.count -= 1;
-        this._handleOrder(id, orderInfo, "minus");
+        this._handleOrder(id, orderInfo, "minus", data);
       }
     });
     this.setState({ goods: data });
   };
-  _handleOrder = (id, orderInfo, type) => {
+  _handleOrder = (id, orderInfo, type, data) => {
     const o = utils.clone(orderInfo);
     let { totalCount, selectdGoods } = o;
     if (type === "minus") {
@@ -75,6 +74,7 @@ export default class Goods extends React.Component {
       } else {
         selectdGoods.push({
           id,
+          goodsInfo: data.find(e => e.id === id),
           count: 1
         });
       }
@@ -105,7 +105,7 @@ export default class Goods extends React.Component {
             textAlign: "center"
           }}
         >
-          <p style={{ ...showStyle }} className="fontsize40">
+          <p style={{ ...showStyle }} className="font-size-primary">
             {count}
           </p>
         </div>
@@ -163,12 +163,14 @@ export default class Goods extends React.Component {
       );
     });
   };
-  _handleShowOrderPage = (orderInfo) => {
-    const {totalCount} = orderInfo;
+  _handleShowOrderPage = orderInfo => {
+    const { totalCount } = orderInfo;
     if (totalCount === 0) {
-      alert("请先选择商品！")
+      alert("请先选择商品！");
+      return;
     }
-  }
+    renderSubPage({ title: "我的订单", children: <Order data={orderInfo} /> });
+  };
   render() {
     const { goods, orderInfo } = this.state;
     return (
@@ -208,8 +210,8 @@ export default class Goods extends React.Component {
             </span>
           </div>
           <div
-            className="co_bg_red co_white fontsize40"
-            onClick={()=>this._handleShowOrderPage(orderInfo)}
+            className="co_bg_red co_white font-size-primary"
+            onClick={() => this._handleShowOrderPage(orderInfo)}
             style={{
               width: "3rem",
               height: "100%",

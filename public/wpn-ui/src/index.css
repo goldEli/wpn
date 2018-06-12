@@ -119,10 +119,10 @@ body {
   height: 100%;
 }
 
-.fontsize40 {
+.font-size-primary {
   font-size: 0.4rem;
 }
-.fontsize30 {
+.font-size-content {
   font-size: 0.3rem;
 }
 .flex-column {
@@ -133,6 +133,11 @@ body {
   display: flex;
   flex-direction: row;
 }
+
+.co_bg_common{
+  background: rgb(242, 242, 242);
+}
+
 .co_black{
   color: rgb(1,0,3);
 }
