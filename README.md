@@ -25,6 +25,7 @@ node + express + mysql + react + weui
 
 ```
 CREATE SCHEMA `wpn` DEFAULT CHARACTER SET utf8mb4 ;
+source /wpn/wpn.sql;
 ```
 
 ## log
