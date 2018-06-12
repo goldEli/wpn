@@ -5,7 +5,7 @@ var common = require("../common");
 var sql = {
   findAll: "SELECT * FROM orders",
   insert:
-    "INSERT INTO orders(id,user_id,adress_info,pay_method,express,selected_goods,status) VALUES(UUID(),?,?,?,?,?,?)"
+    "INSERT INTO orders(id,time,user_id,adress_info,pay_method,express,selected_goods,status) VALUES(UUID(),NOW(),?,?,?,?,?,?)"
 };
 
 var md = {};
@@ -19,7 +19,7 @@ md.findAll = function(callback) {
 
 md.insert = function(addParam, callback) {
   var s = sql.insert;
-  console.log('addParam',addParam)
+  console.log("addParam", addParam);
   db(
     s,
     function(err, data) {

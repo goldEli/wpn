@@ -28,7 +28,7 @@ export default class Order extends React.Component {
     selectdGoods.forEach((e, i) => {
       const { count, goodsInfo } = e;
       const { price } = goodsInfo;
-      totalPrice += price * count;
+      totalPrice = utils.math.add(utils.math.mul(price, count), totalPrice);
     });
     this.setState({ totalPrice });
   };
@@ -43,7 +43,7 @@ export default class Order extends React.Component {
   };
   _handleVerifyOutput = data => {
     const { adress_info } = data;
-    const {consignees, mobile, adress} = JSON.parse(adress_info);
+    const { consignees, mobile, adress } = JSON.parse(adress_info);
     if (!consignees) {
       alert("请输入收货人！");
       return false;
@@ -56,7 +56,7 @@ export default class Order extends React.Component {
       alert("请输入收货人地址！");
       return false;
     }
-    return true
+    return true;
   };
   _renderAdressInfo = () => {
     return [
@@ -142,7 +142,9 @@ export default class Order extends React.Component {
             <p className="font-size-content">{"x " + count}</p>
           </div>
           <div style={{ flex: 1 }}>
-            <p className="font-size-content">{"￥ " + price * count}</p>
+            <p className="font-size-content">
+              {"￥ " + utils.math.mul(price, count)}
+            </p>
           </div>
         </div>
       );
@@ -173,7 +175,7 @@ export default class Order extends React.Component {
     }
     api.insertOrder({
       success: data => {
-        alert("下单成功！")
+        alert("下单成功！");
       },
       param: param
     });
