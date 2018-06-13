@@ -1,3 +1,6 @@
+var UUID = require('node-uuid');
+var sd = require('silly-datetime');
+
 var md = {}
 
 /**
@@ -27,6 +30,14 @@ md.clone = function(obj) {
       o = obj;
   }
   return o;
+}
+
+md.uuid = function() {
+    return UUID.v4().replace(/-/g,'');
+}
+
+md.now = function() {
+    return sd.format(new Date(), 'YYYY-MM-DD HH:mm');
 }
 
 module.exports = md;

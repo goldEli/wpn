@@ -1,6 +1,7 @@
 import React from "react";
 import api from "../../api/api";
 import "./login.css";
+import SignIn from "../SignIn/SignIn";
 
 const style = {
   item: {
@@ -33,7 +34,18 @@ export default class Login extends React.Component {
       param: { pwd, mobile }
     });
   };
+  _isShowSignInPage = () => {
+    let s = window.location.hash;
+    if (s.indexOf("id=") !== -1) {
+      this.userId = s.replace(/#\/login\?id=/, "");
+      return true
+    }
+    return false
+  };
   render() {
+    if (this._isShowSignInPage()) {
+      return <SignIn userId = {this.userId}/>
+    }
     return (
       <div className="wpn-login" style={{ paddingTop: "3rem" }}>
         <div style={{ padding: "0 0.8rem 0.2rem 0.8rem" }}>
@@ -50,9 +62,15 @@ export default class Login extends React.Component {
             placeholder="请输入密码"
             onChange={this._handleInputChange}
           />
-          <p style={{textAlign:"right", color: "#fff"}}>忘记密码？</p>
+          <p style={{ textAlign: "right", color: "#fff" }}>忘记密码？</p>
           <a
-            style={{ ...style.item, background: "rgb(1,0,3)", marginTop: "0.2rem",textAlign:'center', textIndent:'0' }}
+            style={{
+              ...style.item,
+              background: "rgb(1,0,3)",
+              marginTop: "0.2rem",
+              textAlign: "center",
+              textIndent: "0"
+            }}
             onClick={this._handleSubmit}
             className="weui-btn weui-btn_primary"
             href="javascript:;"

@@ -3,6 +3,7 @@ var router = express.Router();
 var usersRoutes = require('./usersRoutes');
 var goodsRoutes = require('./goodsRoutes');
 var ordersRoutes = require('./ordersRoutes');
+var agencesRoutes = require('./agencesRoutes');
 
 console.log("===================")
 
@@ -18,5 +19,6 @@ router.get('/', function(req, res, next) {
 router.use('/users', usersRoutes);
 router.use('/goods', goodsRoutes);
 router.use('/orders', ordersRoutes);
+router.use('/agencies', agencesRoutes);
 
 module.exports = router;

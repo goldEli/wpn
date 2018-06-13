@@ -1,7 +1,7 @@
 var express = require('express');
 var router = express.Router();
-var UUID = require('node-uuid');
 var usersServers = require('../servers/usersServers/usersServers');
+var utils = require('../utils/utils');
 
 router.post('/', function(req, res, next) {
   usersServers.queryallUsers(function(data){
@@ -12,7 +12,7 @@ router.post('/', function(req, res, next) {
 // add
 router.post('/add', function(req, res, next){
   var name = req.body.name;
-  var uuid = UUID.v4().replace(/-/g,'');
+  var uuid = utils.uuid();
   var addParams = [uuid, name]
   usersServers.addUser(addParams, function(data){
     res.json(data);

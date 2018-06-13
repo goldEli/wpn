@@ -1,6 +1,7 @@
 import React from "react";
 import api from "../../../api/api";
 import OrderManager from "../OrderManager/OrderManager";
+import AgenciesAutid from "../AgenciesAutid/AgenciesAutid";
 import Common from "../../Common/Common";
 const { renderSubPage } = Common;
 
@@ -16,6 +17,9 @@ const data = [
   {
     icon: "fa-drivers-license",
     label: "下级代理审核",
+    onClick: () => {
+      renderSubPage({ title: "下级代理审核", children: <AgenciesAutid /> });
+    }
   },
   {
     icon: "fa-paste",

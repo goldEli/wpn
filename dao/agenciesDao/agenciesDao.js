@@ -4,21 +4,13 @@ var utils = require("../../utils/utils")
 
 // status: 0： 支付, 1: 未支付
 var sql = {
-  findAll: "SELECT * FROM orders",
-  findById: "SELECT * FROM orders WHERE user_id=",
+  findById: "SELECT * FROM agencies WHERE user_id=",
   insert:
-    `INSERT INTO orders(id,time,user_id,adress_info,pay_method,express,selected_goods,status) VALUES('${utils.uuid()}','${utils.now()}',?,?,?,?,?,?)`,
+    `INSERT INTO agencies(id,name,mobile,pwd,bank_address,bank_num,alipay,wechat,email,user_id) VALUES('${utils.uuid()}',?,?,?,?,?,?,?,?,?)`,
   
 };
 
 var md = {};
-
-md.findAll = function(callback) {
-  var s = sql.findAll;
-  db(s, function(err, data) {
-    common.handleDataWithStatus({ err, data, callback, s });
-  });
-};
 
 md.findById = function(id, callback) {
   var s = sql.findById + `'` + id + `'`;
@@ -28,6 +20,7 @@ md.findById = function(id, callback) {
 };
 
 md.insert = function(addParam, callback) {
+  console.log("=====", addParam)
   var s = sql.insert;
   db(
     s,
