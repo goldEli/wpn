@@ -43,7 +43,8 @@ md.math = {
       d = 0;
     }
     return (
-      (e = Math.pow(10, Math.max(c, d))), (md.math.mul(a, e) + md.math.mul(b, e)) / e
+      (e = Math.pow(10, Math.max(c, d))),
+      (md.math.mul(a, e) + md.math.mul(b, e)) / e
     );
   },
   sub: (a, b) => {
@@ -59,7 +60,8 @@ md.math = {
       d = 0;
     }
     return (
-      (e = Math.pow(10, Math.max(c, d))), (md.math.mul(a, e) - md.math.mul(b, e)) / e
+      (e = Math.pow(10, Math.max(c, d))),
+      (md.math.mul(a, e) - md.math.mul(b, e)) / e
     );
   },
   mul: (a, b) => {
@@ -94,6 +96,18 @@ md.math = {
       md.math.mul(c / d, Math.pow(10, f - e))
     );
   }
+};
+
+md.calculate = function(data) {
+  const a = JSON.parse(data);
+  let totalPrice = 0;
+  let amount = 0;
+  a.forEach((e, i) => {
+    const { price, count } = e;
+    totalPrice = md.math.add(totalPrice, md.math.mul(price, count));
+    amount += count;
+  });
+  return { totalPrice, amount };
 };
 
 export default md;

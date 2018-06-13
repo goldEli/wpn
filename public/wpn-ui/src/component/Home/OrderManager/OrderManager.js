@@ -1,6 +1,9 @@
 import React from "react";
 import api from "../../../api/api";
 import utils from "../../../libs/utils/utils";
+import OrderDetail from '../OrderDetail/OrderDetail';
+import Common from "../../Common/Common";
+const { renderSubPage } = Common;
 
 const MAP_TAB = {
   ALL: "ALL",
@@ -47,7 +50,9 @@ export default class OrderManager extends React.Component {
     })
     return {totalPrice, amount};
   }
-  
+  _handleShowDetail = (data) => {
+    renderSubPage({ title: "订单详情", children: <OrderDetail data={data} MAP_PAY_STATUS={MAP_PAY_STATUS}/> });
+  }
   _renderTab = curTab => {
     const data = [
       { name: "全部", key: MAP_TAB.ALL },
@@ -86,22 +91,23 @@ export default class OrderManager extends React.Component {
       <div style={{ flex: 1, overflow: "scroll" }}>
         {d.map((e, i) => {
           const { id, time, status, selected_goods,adress_info } = e;
-          const {totalPrice, amount} = this._handleCalculate(selected_goods)
+          const {totalPrice, amount} = utils.calculate(selected_goods)
           return (
             <div
               key={id}
+              onClick ={()=>{this._handleShowDetail(e)}}
               className="co_bg_white flex-column"
               style={{ marginTop: "0.2rem", height: "1.5rem", width: "100%" }}
             >
               <div
-                className="flex-row"
+                className="flex-row font-size-secondary"
                 style={{ height: "0.5rem", width: "100%" }}
               >
                 <div style={{ flex: 1 }}>{time}</div>
                 <div style={{ width: "2rem" }}>{MAP_PAY_STATUS[status]}</div>
               </div>
               <div style={{ flex: 1, alignItems: "center", display: "flex" }}>
-                <div>{`(${JSON.parse(adress_info).consignees})共个${amount}产品，总金额：￥${totalPrice}`}</div>
+                <div className="font-size-content">{`(${JSON.parse(adress_info).consignees})共个${amount}产品，总金额：￥${totalPrice}`}</div>
               </div>
             </div>
           );

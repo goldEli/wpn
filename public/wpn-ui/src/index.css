@@ -125,6 +125,9 @@ body {
 .font-size-content {
   font-size: 0.3rem;
 }
+.font-size-secondary {
+  font-size: 0.2rem;
+}
 .flex-column {
   display: flex;
   flex-direction: column;
