@@ -25,7 +25,6 @@ app.use(session({
 }));
 app.use(express.static(path.join(__dirname, 'public/build')));
 app.use(function(req, res, next) {
-  console.log('req.session.user====',req.session.user)
   // 总是允许添加代理 agencies/insertAgency
   if (req.url === '/agencies/insertAgency') {
     next();

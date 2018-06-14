@@ -15,6 +15,8 @@ const urls = {
   findAllOrders: "/orders/findAllOrders",
   insertAgency: "/agencies/insertAgency",
   findAllAgencies: "/agencies/findAllAgencies",
+  delAgencyById: "/agencies/delAgencyById",
+  passAgency: "/agencies/passAgency",
 };
 
 const handleFetch = function(options) {

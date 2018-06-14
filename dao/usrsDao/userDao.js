@@ -1,9 +1,12 @@
 var db = require("../../config/db");
 var common = require("../common");
+var utils = require("../../utils/utils")
 
 var sql = {
   //增
-  insert: "INSERT INTO users(id,name) VALUES(?,?)",
+  insert: function(){
+    return `INSERT INTO users(id, alipay,bank_address,bank_num,email,mobile,name,pid,pwd,wechat) VALUES('${utils.uuid()}',?,?,?,?,?,?,?,?,?)`
+  },
   //删
   deleteById: "DELETE FROM users WHERE id=",
   //查
@@ -26,7 +29,7 @@ md.findAll = function(callback) {
 };
 
 md.insert = function(addParam, callback) {
-  var s = sql.insert;
+  var s = sql.insert();
   db(
     s,
     function(err, data) {

@@ -18,6 +18,26 @@ export default class AgenciesAutid extends React.Component {
       }
     });
   };
+  _handleDel = (id) => {
+    if (window.confirm('确定删除？')) {
+      api.delAgencyById({
+        param: {id},
+        success: () => {
+          this._setList()
+        }
+      })
+    }
+  }
+  _handlePass = (id) => {
+    if (window.confirm('确认通过？')) {
+      api.passAgency({
+        param: {id},
+        success: () => {
+          this._setList()
+        }
+      })
+    }
+  }
   render() {
     const { list } = this.state;
 
@@ -60,8 +80,16 @@ export default class AgenciesAutid extends React.Component {
               >
                 <div style={{ flex: 1 }}>{name}</div>
                 <div
-                  style={{ width: "2rem", textAlign: "center" }}
+                  onClick = {()=>{this._handleDel(id)}}
+                  style={{ width: "1.5rem", textAlign: "center", marginRight:"0.5rem" }}
                   className="co_bg_red co_white"
+                >
+                  删除
+                </div>
+                <div
+                  onClick = {() => {this._handlePass(id)}}
+                  style={{ width: "1.5rem", textAlign: "center" }}
+                  className="co_bg_black co_white"
                 >
                   通过
                 </div>
