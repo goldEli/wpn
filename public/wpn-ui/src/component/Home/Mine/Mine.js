@@ -3,6 +3,7 @@ import api from "../../../api/api";
 import OrderManager from "../OrderManager/OrderManager";
 import AgenciesAutid from "../AgenciesAutid/AgenciesAutid";
 import Common from "../../Common/Common";
+import AddAgency from "../AddAgency/AddAgency"
 const { renderSubPage } = Common;
 
 const data = [
@@ -13,6 +14,9 @@ const data = [
   {
     icon: "fa-user-plus",
     label: "添加代理",
+    onClick: () => {
+      renderSubPage({ title: "下级代理审核", children: <AddAgency /> });
+    }
   },
   {
     icon: "fa-drivers-license",

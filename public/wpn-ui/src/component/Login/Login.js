@@ -1,7 +1,6 @@
 import React from "react";
 import api from "../../api/api";
 import "./login.css";
-import SignIn from "../SignIn/SignIn";
 
 const style = {
   item: {
@@ -34,18 +33,8 @@ export default class Login extends React.Component {
       param: { pwd, mobile }
     });
   };
-  _isShowSignInPage = () => {
-    let s = window.location.hash;
-    if (s.indexOf("id=") !== -1) {
-      this.userId = s.replace(/#\/login\?id=/, "");
-      return true
-    }
-    return false
-  };
+
   render() {
-    if (this._isShowSignInPage()) {
-      return <SignIn userId = {this.userId}/>
-    }
     return (
       <div className="wpn-login" style={{ paddingTop: "3rem" }}>
         <div style={{ padding: "0 0.8rem 0.2rem 0.8rem" }}>

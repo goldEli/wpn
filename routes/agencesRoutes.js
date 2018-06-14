@@ -1,6 +1,7 @@
 var express = require("express");
 var router = express.Router();
 var agenciesServer = require("../servers/agenciesServer/agenciesServer");
+var utils = require("../utils/utils");
 
 router.post("/insertAgency", function(req, res, next) {
   var {
@@ -25,7 +26,11 @@ router.post("/insertAgency", function(req, res, next) {
 router.post("/findAllAgencies", function(req, res, next) {
   var { id } = req.session.user;
   agenciesServer.findAgencesById(id, function(data) {
-    res.json(data);
+    var d = utils.clone(data);
+    d.data.forEach((e,i)=>{
+      delete e.pwd
+    })
+    res.json(d);
   });
 });
 

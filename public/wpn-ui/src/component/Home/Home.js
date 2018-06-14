@@ -7,7 +7,7 @@ import UserDetail from "./UserDetail/UserDetail";
 const MAP_TAB = {
   USER_DETAIL: "UserDetail",
   GOODS: "Goods",
-  MINE: "Mine"
+  MINE: "Mine",
 };
 export default class Home extends React.Component {
   constructor(props) {

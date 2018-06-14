@@ -10,7 +10,7 @@ const style = {
     textIndent: "0.5rem",
     borderRadius: "0.2rem",
     border: "none",
-    marginBottom: "0.2rem",
+    marginBottom: "0.2rem"
   }
 };
 
@@ -19,12 +19,23 @@ export default class SignIn extends React.Component {
     super(props);
     this.state = {
       isShowSuccessPage: false,
-    }
+      userId: null
+    };
   }
+  componentDidMount() {
+    this._setUserId();
+  }
+  _setUserId = () => {
+    let s = window.location.hash;
+    if (s.indexOf("id=") !== -1) {
+      let userId = s.replace(/#\/SignIn\?id=/, "");
+      this.setState({ userId });
+    }
+  };
   _handleInputChange = e => {
     this.setState({ [e.target.name]: e.target.value });
   };
-  _handleSubmit = () => {
+  _handleSubmit = (userId) => {
     const {
       name,
       mobile,
@@ -37,14 +48,13 @@ export default class SignIn extends React.Component {
       email
     } =
       this.state || {};
-    const userId = this.props;
     api.insertAgency({
       success: () => {
-        alert('资料提交成功，等待管理员审核！')
-        this.setState({isShowSuccessPage: true})
+        alert("资料提交成功，等待管理员审核！");
+        this.setState({ isShowSuccessPage: true });
       },
       param: {
-        user_id: '0000',
+        user_id: userId,
         name,
         mobile,
         pwd,
@@ -77,9 +87,14 @@ export default class SignIn extends React.Component {
       { lable: "微信号", placeholder: "请输入微信号", name: "wechat" },
       { lable: "邮箱", placeholder: "请输入邮箱", name: "email" }
     ];
-    const {isShowSuccessPage} = this.state
+    const { isShowSuccessPage, userId } = this.state;
+    if (!userId) {
+      return <div className="font-size-primary">正在加载，请稍后...</div>
+    }
     if (isShowSuccessPage) {
-      return <div className="font-size-primary">资料提交成功，等待管理员审核！</div>
+      return (
+        <div className="font-size-primary">资料提交成功，等待管理员审核！</div>
+      );
     }
     return (
       <div className="fill" style={{ overflow: "scroll" }}>
@@ -141,7 +156,7 @@ export default class SignIn extends React.Component {
               borderRadius: "0.2rem"
             }}
             className="co_white co_bg_black"
-            onClick={this._handleSubmit}
+            onClick={()=>{this._handleSubmit(userId)}}
           >
             提交
           </div>
@@ -150,3 +165,5 @@ export default class SignIn extends React.Component {
     );
   }
 }
+
+ 
