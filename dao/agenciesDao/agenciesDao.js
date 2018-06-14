@@ -5,8 +5,9 @@ var utils = require("../../utils/utils")
 // status: 0： 支付, 1: 未支付
 var sql = {
   findById: "SELECT * FROM agencies WHERE user_id=",
-  insert:
-    `INSERT INTO agencies(id,name,mobile,pwd,bank_address,bank_num,alipay,wechat,email,user_id) VALUES('${utils.uuid()}',?,?,?,?,?,?,?,?,?)`,
+  insert:() => {
+    return `INSERT INTO agencies(id,name,mobile,pwd,bank_address,bank_num,alipay,wechat,email,user_id) VALUES('${utils.uuid()}',?,?,?,?,?,?,?,?,?)`
+  },
   
 };
 
@@ -21,7 +22,7 @@ md.findById = function(id, callback) {
 
 md.insert = function(addParam, callback) {
   console.log("=====", addParam)
-  var s = sql.insert;
+  var s = sql.insert();
   db(
     s,
     function(err, data) {

@@ -110,4 +110,27 @@ md.calculate = function(data) {
   return { totalPrice, amount };
 };
 
+md.getParamByKeyFromUrl = key => {
+  var o = {};
+  var s = window.location.hash;
+  var a = [];
+  s = s.split("?");
+  s = s.pop();
+  if (s.indexOf("&") !== -1) {
+    s = s.split("&");
+    a = s;
+  } else {
+    a = [s];
+  }
+  a.forEach((e, i) => {
+    let arr = e.split("=");
+    o[arr[0]] = arr[1];
+  });
+  if (o[key]) {
+    return o[key];
+  } else {
+    return false;
+  }
+};
+
 export default md;

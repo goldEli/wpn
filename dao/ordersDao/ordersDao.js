@@ -6,8 +6,9 @@ var utils = require("../../utils/utils")
 var sql = {
   findAll: "SELECT * FROM orders",
   findById: "SELECT * FROM orders WHERE user_id=",
-  insert:
-    `INSERT INTO orders(id,time,user_id,adress_info,pay_method,express,selected_goods,status) VALUES('${utils.uuid()}','${utils.now()}',?,?,?,?,?,?)`,
+  insert:() => {
+    return `INSERT INTO orders(id,time,user_id,adress_info,pay_method,express,selected_goods,status) VALUES('${utils.uuid()}','${utils.now()}',?,?,?,?,?,?)`
+  }
   
 };
 
@@ -28,7 +29,7 @@ md.findById = function(id, callback) {
 };
 
 md.insert = function(addParam, callback) {
-  var s = sql.insert;
+  var s = sql.insert();
   db(
     s,
     function(err, data) {

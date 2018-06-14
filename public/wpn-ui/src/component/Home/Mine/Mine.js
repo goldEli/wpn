@@ -15,7 +15,7 @@ const data = [
     icon: "fa-user-plus",
     label: "添加代理",
     onClick: () => {
-      renderSubPage({ title: "下级代理审核", children: <AddAgency /> });
+      renderSubPage({ title: "添加代理", children: <AddAgency /> });
     }
   },
   {

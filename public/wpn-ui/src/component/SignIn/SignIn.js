@@ -1,5 +1,6 @@
 import React from "react";
 import api from "../../api/api";
+import utils from "../../libs/utils/utils";
 
 const style = {
   item: {
@@ -23,24 +24,46 @@ export default class SignIn extends React.Component {
     };
   }
   componentDidMount() {
-    this._setUserId();
+    this.setState({ userId: utils.getParamByKeyFromUrl("id") });
   }
-  _setUserId = () => {
-    let s = window.location.hash;
-    if (s.indexOf("id=") !== -1) {
-      let userId = s.replace(/#\/SignIn\?id=/, "");
-      this.setState({ userId });
-    }
-  };
+
   _handleInputChange = e => {
     this.setState({ [e.target.name]: e.target.value });
   };
-  _handleSubmit = (userId) => {
+  _handleVerifyData = option => {
+    const { name, mobile, pwd, confirm_pwd, bank_address, bank_num } = option;
+    if (!name) {
+      alert("请输入姓名！");
+      return false;
+    }
+    if (!mobile) {
+      alert("请输入手机号码！");
+      return false;
+    }
+    if (!pwd) {
+      alert("请输入密码！");
+      return false;
+    }
+    if (confirm_pwd !== pwd) {
+      alert("两次密码不一致！");
+      return false;
+    }
+    if (!bank_address) {
+      alert("请输入开户行！");
+      return false;
+    }
+    if (!bank_num) {
+      alert("请输入银行卡号！");
+      return false;
+    }
+    return true;
+  };
+  _handleSubmit = userId => {
     const {
       name,
       mobile,
       pwd,
-      confirm_password,
+      confirm_pwd,
       bank_address,
       bank_num,
       alipay,
@@ -48,6 +71,18 @@ export default class SignIn extends React.Component {
       email
     } =
       this.state || {};
+    if (
+      !this._handleVerifyData({
+        name,
+        mobile,
+        pwd,
+        confirm_pwd,
+        bank_address,
+        bank_num
+      })
+    ) {
+      return;
+    }
     api.insertAgency({
       success: () => {
         alert("资料提交成功，等待管理员审核！");
@@ -58,7 +93,7 @@ export default class SignIn extends React.Component {
         name,
         mobile,
         pwd,
-        confirm_password,
+        confirm_pwd,
         bank_address,
         bank_num,
         alipay,
@@ -82,14 +117,14 @@ export default class SignIn extends React.Component {
         placeholder: "请输入开户行信息",
         name: "bank_address"
       },
-      { lable: "*银行卡号", placeholder: "请输入银行卡密码", name: "bank_num" },
-      { lable: "支付宝", placeholder: "请输入支付号号", name: "alipay" },
+      { lable: "*银行卡号", placeholder: "请输入银行卡号", name: "bank_num" },
+      { lable: "支付宝", placeholder: "请输入支付号", name: "alipay" },
       { lable: "微信号", placeholder: "请输入微信号", name: "wechat" },
       { lable: "邮箱", placeholder: "请输入邮箱", name: "email" }
     ];
     const { isShowSuccessPage, userId } = this.state;
     if (!userId) {
-      return <div className="font-size-primary">正在加载，请稍后...</div>
+      return <div className="font-size-primary">正在加载，请稍后...</div>;
     }
     if (isShowSuccessPage) {
       return (
@@ -104,6 +139,7 @@ export default class SignIn extends React.Component {
         >
           {data.map((e, i) => {
             const { name, lable, placeholder } = e;
+            const inputType = name.indexOf("pwd") !== -1 ? "password" : "";
             return (
               <div
                 key={name}
@@ -128,6 +164,7 @@ export default class SignIn extends React.Component {
                   }}
                 >
                   <input
+                    type={inputType}
                     name={name}
                     className="font-size-content"
                     style={{ ...style.item }}
@@ -156,7 +193,9 @@ export default class SignIn extends React.Component {
               borderRadius: "0.2rem"
             }}
             className="co_white co_bg_black"
-            onClick={()=>{this._handleSubmit(userId)}}
+            onClick={() => {
+              this._handleSubmit(userId);
+            }}
           >
             提交
           </div>
@@ -165,5 +204,3 @@ export default class SignIn extends React.Component {
     );
   }
 }
-
- 

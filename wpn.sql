@@ -11,11 +11,38 @@
  Target Server Version : 50722
  File Encoding         : 65001
 
- Date: 12/06/2018 17:28:11
+ Date: 14/06/2018 12:18:52
 */
 
 SET NAMES utf8mb4;
 SET FOREIGN_KEY_CHECKS = 0;
+
+-- ----------------------------
+-- Table structure for agencies
+-- ----------------------------
+DROP TABLE IF EXISTS `agencies`;
+CREATE TABLE `agencies` (
+  `id` varchar(100) NOT NULL,
+  `name` varchar(32) DEFAULT NULL,
+  `mobile` varchar(32) DEFAULT NULL,
+  `bank_address` varchar(100) DEFAULT NULL,
+  `bank_num` varchar(32) DEFAULT NULL,
+  `alipay` varchar(32) DEFAULT NULL,
+  `wechat` varchar(32) DEFAULT NULL,
+  `email` varchar(32) DEFAULT NULL,
+  `user_id` varchar(100) DEFAULT NULL,
+  `pwd` varchar(32) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- ----------------------------
+-- Records of agencies
+-- ----------------------------
+BEGIN;
+INSERT INTO `agencies` VALUES ('064a8369ef44419eac531278fd7b1809', '刘敏', '13678436790', '中国银行成都支行', '6422786543542211', 'sdf', 'quyueee', '1111@qq.com', '#/SignIn?id=0000', '123');
+INSERT INTO `agencies` VALUES ('35ca88f44f3b420d85ffe6e16b53e7e2', '刘敏', '13567438907', '中国银行成都支行', '8765432546788', 'swe', 'sd', '123@qq.com', '0000', '123');
+INSERT INTO `agencies` VALUES ('845522cd5a124102ae79fdb3ee29ceb4', '张逗', '13578763456', '成都支行', '64438876443294', '13557346', 'quyue23', '123@qq.com', '0000', '123');
+COMMIT;
 
 -- ----------------------------
 -- Table structure for goods
@@ -27,7 +54,7 @@ CREATE TABLE `goods` (
   `price` decimal(10,2) DEFAULT NULL,
   `img_url` longtext,
   `des` varchar(255) DEFAULT '好吃的板命',
-  `number` int(32) DEFAULT '100',
+  `number` int(16) DEFAULT '100',
   `specification` varchar(32) DEFAULT '75g/袋',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -52,7 +79,7 @@ CREATE TABLE `orders` (
   `express` varchar(32) DEFAULT NULL,
   `selected_goods` varchar(255) DEFAULT NULL,
   `status` int(16) DEFAULT NULL,
-  `time` datetime DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
+  `time` varchar(32) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -61,7 +88,9 @@ CREATE TABLE `orders` (
 -- ----------------------------
 BEGIN;
 INSERT INTO `orders` VALUES ('175293d4-6e03-11e8-8428-ab63ed7b9ea9', 'c0a42bfcd79545ec98a8fc72ebbbb8d6', '{\"consignees\":\"李四\",\"mobile\":\"13890774533\",\"adress\":\"四川自贡\"}', 'wepay', '申通', '[{\"count\":2,\"name\":\"冷吃兔\",\"price\":20.23},{\"count\":1,\"name\":\"五香兔\",\"price\":19.2}]', 1, '2018-06-12 13:40:19');
+INSERT INTO `orders` VALUES ('1b98a22a498b4e12b6a2ca59c59062d6', 'c0a42bfcd79545ec98a8fc72ebbbb8d6', '{\"consignees\":\"张豆豆\",\"mobile\":\"13552138643\",\"adress\":\"成都锦江区\"}', 'alipay', '自提', '[{\"count\":1,\"name\":\"冷吃兔\",\"price\":20.23},{\"count\":1,\"name\":\"五香兔\",\"price\":19.2}]', 1, '2018-06-13 12:29:07');
 INSERT INTO `orders` VALUES ('2c583cca-6e03-11e8-8428-ab63ed7b9ea9', 'c0a42bfcd79545ec98a8fc72ebbbb8d6', '{\"consignees\":\"王五\",\"mobile\":\"13654237890\",\"adress\":\"四川成都\"}', 'alipay', '申通', '[{\"count\":2,\"name\":\"冷吃兔\",\"price\":20.23},{\"count\":1,\"name\":\"五香兔\",\"price\":19.2}]', 0, '2018-06-12 16:44:49');
+INSERT INTO `orders` VALUES ('5c19a761beb84404a50cc93e5d6ae322', 'c0a42bfcd79545ec98a8fc72ebbbb8d6', '{\"consignees\":\"李花花\",\"mobile\":\"13558642135\",\"adress\":\"四川大学\"}', 'alipay', '申通', '[{\"count\":2,\"name\":\"冷吃兔\",\"price\":20.23},{\"count\":1,\"name\":\"五香兔\",\"price\":19.2}]', 1, '2018-06-13 12:37:00');
 INSERT INTO `orders` VALUES ('605bb4bc-6e16-11e8-8428-ab63ed7b9ea9', 'c0a42bfcd79545ec98a8fc72ebbbb8d6', '{\"consignees\":\"小王\",\"mobile\":\"13454887643\",\"adress\":\"成都金牛区\"}', 'alipay', '申通', '[{\"count\":2,\"name\":\"冷吃兔\",\"price\":20.23},{\"count\":2,\"name\":\"五香兔\",\"price\":19.2}]', 1, '2018-06-12 15:58:21');
 INSERT INTO `orders` VALUES ('63c7fe68-6e1a-11e8-8428-ab63ed7b9ea9', '0b9f9ce3c56d475ea3e86de94152993a', '{\"consignees\":\"130用户\",\"mobile\":\"13098762361\",\"adress\":\"成都锦江区\"}', 'alipay', '顺丰', '[{\"count\":2,\"name\":\"冷吃兔\",\"price\":20.23},{\"count\":1,\"name\":\"五香兔\",\"price\":19.2}]', 1, '2018-06-12 16:27:05');
 INSERT INTO `orders` VALUES ('f078c9d4-6e04-11e8-8428-ab63ed7b9ea9', 'c0a42bfcd79545ec98a8fc72ebbbb8d6', '{\"consignees\":\"李华\",\"mobile\":\"13876553266\",\"adress\":\"成都德阳\"}', 'wepay', '申通', '[{\"count\":2,\"name\":\"冷吃兔\",\"price\":20.23},{\"count\":2,\"name\":\"五香兔\",\"price\":19.2}]', 1, '2018-06-12 13:53:32');
@@ -77,6 +106,12 @@ CREATE TABLE `users` (
   `mobile` varchar(255) NOT NULL DEFAULT '',
   `pwd` varchar(255) NOT NULL DEFAULT '',
   `description` varchar(255) NOT NULL DEFAULT '',
+  `pid` varchar(100) DEFAULT NULL,
+  `bank_adress` varchar(100) DEFAULT NULL,
+  `bank_num` varchar(32) DEFAULT NULL,
+  `alipay` varchar(32) DEFAULT NULL,
+  `wechat` varchar(32) DEFAULT NULL,
+  `email` varchar(32) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4;
 
@@ -84,9 +119,9 @@ CREATE TABLE `users` (
 -- Records of users
 -- ----------------------------
 BEGIN;
-INSERT INTO `users` VALUES ('c0a42bfcd79545ec98a8fc72ebbbb8d6', 'kkk', '135', '123', '');
-INSERT INTO `users` VALUES ('3c410edc281445758ffdd9cb681170f6', 'bbb', '138', '123', '');
-INSERT INTO `users` VALUES ('0b9f9ce3c56d475ea3e86de94152993a', 'lll', '130', '123', '');
+INSERT INTO `users` VALUES ('0000', 'admin', '135', '123', '', NULL, NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `users` VALUES ('3c410edc281445758ffdd9cb681170f6', 'bbb', '138', '123', '', NULL, NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `users` VALUES ('0b9f9ce3c56d475ea3e86de94152993a', 'lll', '130', '123', '', NULL, NULL, NULL, NULL, NULL, NULL);
 COMMIT;
 
 SET FOREIGN_KEY_CHECKS = 1;
