@@ -10,6 +10,7 @@ const urls = {
   login: "/users/login",
   logout: "/users/logout",
   userInfo: "/users/userInfo",
+  updateUserInfo: "/users/updateUserInfo",
   queryAllGoods: "/goods/queryAllGoods",
   insertOrder: "/orders/insertOrder",
   findAllOrders: "/orders/findAllOrders",

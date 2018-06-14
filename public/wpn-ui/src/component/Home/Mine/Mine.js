@@ -3,7 +3,8 @@ import api from "../../../api/api";
 import OrderManager from "../OrderManager/OrderManager";
 import AgenciesAutid from "../AgenciesAutid/AgenciesAutid";
 import Common from "../../Common/Common";
-import AddAgency from "../AddAgency/AddAgency"
+import AddAgency from "../AddAgency/AddAgency";
+import PersonalInfo from "../PersonalInfo/PersonalInfo";
 const { renderSubPage } = Common;
 
 const data = [
@@ -39,6 +40,9 @@ const data = [
   {
     icon: "fa-edit",
     label: "修改个人信息",
+    onClick: () => {
+      renderSubPage({ title: "修改个人信息", children: <PersonalInfo /> });
+    }
   },
   {
     icon: "fa-key",

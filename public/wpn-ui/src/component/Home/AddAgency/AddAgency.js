@@ -3,9 +3,6 @@ import api from "../../../api/api";
 import QRCode from "qrcode";
 
 export default class AddAgency extends React.Component {
-  constructor(props) {
-    super(props);
-  }
   componentDidMount() {
     api.userInfo({
       success: data => {

@@ -1,11 +1,11 @@
 var db = require("../../config/db");
 var common = require("../common");
-var utils = require("../../utils/utils")
+var utils = require("../../utils/utils");
 
 var sql = {
   //增
-  insert: function(){
-    return `INSERT INTO users(id, alipay,bank_address,bank_num,email,mobile,name,pid,pwd,wechat) VALUES('${utils.uuid()}',?,?,?,?,?,?,?,?,?)`
+  insert: function() {
+    return `INSERT INTO users(id, alipay,bank_address,bank_num,email,mobile,name,pid,pwd,wechat) VALUES('${utils.uuid()}',?,?,?,?,?,?,?,?,?)`;
   },
   //删
   deleteById: "DELETE FROM users WHERE id=",
@@ -16,6 +16,32 @@ var sql = {
   },
   findById: id => {
     return `select * from users where id='${id}';`;
+  },
+  update: option => {
+    const {
+      name,
+      mobile,
+      pwd,
+      bank_address,
+      bank_num,
+      alipay,
+      wechat,
+      email,
+      id
+    } = option;
+    return `
+    UPDATE users 
+    SET 
+    name='${name}', 
+    mobile='${mobile}', 
+    pwd='${pwd}', 
+    bank_address='${bank_address}', 
+    bank_num='${bank_num}', 
+    alipay='${alipay}', 
+    wechat='${wechat}', 
+    email='${email}' 
+    WHERE id='${id}';
+    `;
   }
 };
 
@@ -36,6 +62,16 @@ md.insert = function(addParam, callback) {
       common.handleDataWithStatus({ err, data, callback, s });
     },
     addParam
+  );
+};
+
+md.update = function(option, callback) {
+  var s = sql.update(option);
+  db(
+    s,
+    function(err, data) {
+      common.handleDataWithStatus({ err, data, callback, s });
+    }
   );
 };
 

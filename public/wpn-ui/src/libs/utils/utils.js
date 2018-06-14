@@ -1,3 +1,4 @@
+import React from 'react';
 var md = {};
 
 /**
@@ -132,5 +133,31 @@ md.getParamByKeyFromUrl = key => {
     return false;
   }
 };
+
+md.loading = (data, cb) => {
+  if (!data) {
+    return <div className="font-size-primary">正在加载中...</div>
+  }
+  return cb(data)
+}
+
+md.MAP_ZE = (key) => {
+  var o = {
+    name: "姓名",
+    bank_address: "开户行",
+    bank_num: "银行账号",
+    mobile: "电话",    
+    pwd: "密码",
+    confirm_pwd: "确认密码",
+    wechat: "微信",
+    alipay: "支付宝",
+    email: "邮箱",
+  }
+  if (o[key]) {
+    return o[key]
+  } else{
+    return false
+  }
+}
 
 export default md;

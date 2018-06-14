@@ -31,4 +31,8 @@ md.findUserInfoById = function(option, cb) {
     })
 }
 
+md.updateUserInfo = function(option, cb) {
+    usersDao.update(option, cb)
+}
+
 module.exports = md;
