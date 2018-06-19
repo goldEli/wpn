@@ -11,7 +11,7 @@
  Target Server Version : 50722
  File Encoding         : 65001
 
- Date: 14/06/2018 12:18:52
+ Date: 14/06/2018 17:47:54
 */
 
 SET NAMES utf8mb4;
@@ -34,15 +34,6 @@ CREATE TABLE `agencies` (
   `pwd` varchar(32) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
--- ----------------------------
--- Records of agencies
--- ----------------------------
-BEGIN;
-INSERT INTO `agencies` VALUES ('064a8369ef44419eac531278fd7b1809', '刘敏', '13678436790', '中国银行成都支行', '6422786543542211', 'sdf', 'quyueee', '1111@qq.com', '#/SignIn?id=0000', '123');
-INSERT INTO `agencies` VALUES ('35ca88f44f3b420d85ffe6e16b53e7e2', '刘敏', '13567438907', '中国银行成都支行', '8765432546788', 'swe', 'sd', '123@qq.com', '0000', '123');
-INSERT INTO `agencies` VALUES ('845522cd5a124102ae79fdb3ee29ceb4', '张逗', '13578763456', '成都支行', '64438876443294', '13557346', 'quyue23', '123@qq.com', '0000', '123');
-COMMIT;
 
 -- ----------------------------
 -- Table structure for goods
@@ -105,9 +96,8 @@ CREATE TABLE `users` (
   `name` varchar(255) NOT NULL DEFAULT '',
   `mobile` varchar(255) NOT NULL DEFAULT '',
   `pwd` varchar(255) NOT NULL DEFAULT '',
-  `description` varchar(255) NOT NULL DEFAULT '',
   `pid` varchar(100) DEFAULT NULL,
-  `bank_adress` varchar(100) DEFAULT NULL,
+  `bank_address` varchar(100) DEFAULT NULL,
   `bank_num` varchar(32) DEFAULT NULL,
   `alipay` varchar(32) DEFAULT NULL,
   `wechat` varchar(32) DEFAULT NULL,
@@ -119,9 +109,12 @@ CREATE TABLE `users` (
 -- Records of users
 -- ----------------------------
 BEGIN;
-INSERT INTO `users` VALUES ('0000', 'admin', '135', '123', '', NULL, NULL, NULL, NULL, NULL, NULL);
-INSERT INTO `users` VALUES ('3c410edc281445758ffdd9cb681170f6', 'bbb', '138', '123', '', NULL, NULL, NULL, NULL, NULL, NULL);
-INSERT INTO `users` VALUES ('0b9f9ce3c56d475ea3e86de94152993a', 'lll', '130', '123', '', NULL, NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `users` VALUES ('0000', 'kkk', '135', '123', NULL, NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `users` VALUES ('3c410edc281445758ffdd9cb681170f6', 'bbb', '138', '123', NULL, NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `users` VALUES ('0b9f9ce3c56d475ea3e86de94152993a', 'lll', '130', '123', NULL, NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `users` VALUES ('10a44f1953b04e7ca1fa92f96cf252a2', '刘敏', '13567438907', '123', '0000', '中国银行成都支行', '8765432546788', 'swe', 'sd', '123@qq.com');
+INSERT INTO `users` VALUES ('918b1ce64fc34e52b6509941d144d87d', '张逗', '13578763456', '123', NULL, '成都支行', '64438876443294', '13557346', 'quyue23', '123@qq.com');
+INSERT INTO `users` VALUES ('edec1d01fae840309ea66d5caf674c80', '张华1235', '123', '1234', '0000', '中国银行四川飞航', '312324098239408', '32', '234', '222');
 COMMIT;
 
 SET FOREIGN_KEY_CHECKS = 1;

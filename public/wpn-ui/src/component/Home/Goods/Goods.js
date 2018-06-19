@@ -6,6 +6,7 @@ import api from "../../../api/api";
 import utils from "../../../libs/utils/utils";
 import Order from "../Order/Order";
 import Common from "../../Common/Common";
+import img_lct from "../../../libs/img/lct.jpg";
 const { renderSubPage } = Common;
 export default class Goods extends React.Component {
   constructor(props) {
@@ -136,7 +137,7 @@ export default class Goods extends React.Component {
               <img
                 style={{ height: "1rem", width: "1rem" }}
                 className="weui-media-box__thumb"
-                src={img_url}
+                src={img_lct}
                 alt=""
               />
             </div>
